@@ -37,9 +37,22 @@ public class Proj3 {
     }
 
     // Bubble Sort
-    public static <T extends Comparable> int bubbleSort(ArrayList<T> a, int size) {
-        // Finish Me
-    }
+    public static <T extends Comparable> int bubbleSort(ArrayList<T> array, int size) {
+
+        for(int i = 0; i < array.size(); i++){
+
+            T elementA = array.get(i);
+            T elementB = array.get(i + 1);
+
+            if(elementA.compareTo(elementB>= 0)){
+                T temp = elementA;
+                elementB.
+
+            }
+
+        }
+
+        }
 
     // Odd-Even Transposition Sort
     public static <T extends Comparable> int transpositionSort(ArrayList<T> a, int size) {
