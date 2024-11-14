@@ -92,7 +92,13 @@ public class Proj3 {
 
     // Odd-Even Transposition Sort
     public static <T extends Comparable> int transpositionSort(ArrayList<T> a, int size) {
-        // Finish Me
+       boolean isSorted = false;
+        while(!isSorted){
+            isSorted = true;
+            for (
+
+            )
+        }
     }
 
     public static void main(String [] args)  throws IOException {
