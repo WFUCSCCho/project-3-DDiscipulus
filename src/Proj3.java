@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Proj3 {
@@ -164,8 +165,17 @@ public class Proj3 {
     }
 
     public static void main(String [] args)  throws IOException {
-        //...
-        // Finish Me
-        //...
+        FastFoodNutritionInfo.readFastFoodData("C:\\Users\\desti\\Documents\\project-1-part-2-DDiscipulus\\src\\Edited(4)FFNData.csv");
+        if(args.length != 3){
+            System.err.println("Argument count is invalid: " + args.length);
+            System.out.println("Ensure algorithms are being typed like the following: bubble, merge, transposition, quick");
+            System.exit(0);
+        }
+        String filePath = args[0];
+        String sorter = args[1].toLowerCase(); // Normalize case for comparison
+        int lines = Integer.valueOf(args[2]);
+
+        System.out.println(sorter + lines);
+
     }
 }
