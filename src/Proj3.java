@@ -16,20 +16,20 @@ public class Proj3 {
         }
         // Do the merge operation back to A
         merge(a,temp,left,mid,right);
-        }
+    }
 
     public static <T extends Comparable> void merge(ArrayList<T> a,ArrayList<T> temp, int left, int mid, int right) {
         int i1 = left;
         int i2 = mid + 1;
         for (int curr = left; curr <= right; curr++) {
-            if (left == mid + 1) {                 // Left sublist exhausted
+            if (i1 > mid) {                 // Left sublist exhausted
                 a.set(curr, temp.get(i2++));
             } else if (i2 > right) {             // Right sublist exhausted
                 a.set(curr, temp.get(i1++));
             } else if (temp.get(i1).compareTo(temp.get(i2)) <= 0) {  // Get smaller value
                 a.set(curr, temp.get(i1++));
             } else {
-                a.set(curr, temp.get(i1++));
+                a.set(curr, temp.get(i2++));
             }
         }
     }
@@ -54,7 +54,10 @@ public class Proj3 {
         while (left <= right) { // Move bounds inward until they meet
             while (array.get(left).compareTo(pivot) < 0) { left++; }
             while ((right >= left) && (array.get(right).compareTo(pivot) >= 0)) { right--; }
-            if (right > left) { swap(array, left, right); } // Swap out-of-place values
+            // Swap out-of-place values
+            if (left < right) { swap(array, left, right);
+                left++; right--;
+            }
         }
         return left;            // Return first position in right partition
     }
@@ -66,47 +69,47 @@ public class Proj3 {
     }
 
     // Heap Sort
-    private <T extends Comparable>boolean isGreaterThan(int pos1, int pos2,ArrayList<T> a ) {
-        return a.get(pos1).compareTo(a.get(pos2)) > 0;
-    }
-    public<T extends Comparable> boolean isLeaf(int pos,ArrayList<T> a)
-    { return (a.size() / 2 <= pos ) && (pos < a.size()); }
     public static <T extends Comparable> int leftChild(int pos, ArrayList<T> a)
     { return 2 * pos + 1; }
-    private <T extends Comparable>void siftDown(int pos,ArrayList<T> a) {
+    private static <T extends Comparable> void buildHeap(ArrayList<T> a, int left, int right) {
         int n = a.size();
-        assert (0 <= pos && pos < n) : "Invalid heap position";
-        while (!isLeaf(pos,a)) {
-            int child = leftChild(pos,a);
-            if ((child + 1 < n) && isGreaterThan(child + 1, child,a)) {
-                child = child + 1; // child is now index with the greater value
-            }
-            if (!isGreaterThan(child, pos,a)) {
-                return; // stop early
-            }
-            swap(a,pos, child);
-            pos = child; // keep sifting down
+        // Start heapifying from the last non-leaf node
+        for (int i = (right - 1) / 2; i >= left; i--) {
+            heapify(a, i, right);  // Build the heap by heapifying non-leaf nodes
         }
     }
-
     public static <T extends Comparable> void heapSort(ArrayList<T> a, int left, int right) {
-        while (a.size() > 0){
-            swap(a.get(0),a.get(a.size()-1))
-            a.size() left arrow a.size-1
-            heapify(a,0)
+        buildHeap(a, left, right);
 
+        for (int i = right; i > left; i--) {
 
+            swap(a, left, i);
+
+            heapify(a, left, i - 1);
         }
     }
 
     public static <T extends Comparable> void heapify (ArrayList<T> a, int left, int right) {
-        while (a.size() > 0){
-            swap(a.get(0),a.get(a.size()-1))
-            a.size() left arrow a.size-1
-                    heapify(a,0)
+       int leftC = leftChild(left,a);
+       int rightC = leftC +1;
+        int n = a.size();
+        int maxIndex = left;
 
+        if (leftC <= right && a.get(leftC).compareTo(a.get(maxIndex)) > 0) {
+            maxIndex = leftC;
         }
-    }
+        if (rightC <= right && a.get(rightC).compareTo(a.get(maxIndex)) > 0) {
+            maxIndex = rightC;
+        }
+        if(right < n && a.get(right).compareTo(a.get(maxIndex))>0){
+            maxIndex = right;
+        }
+        if(maxIndex != left){
+            swap(a,left,maxIndex);
+            heapify(a,maxIndex,right);
+         }
+        }
+
 
     // Bubble Sort
     public static <T extends Comparable> int bubbleSort(ArrayList<T> array, int size) {
@@ -123,14 +126,41 @@ public class Proj3 {
     }
 
     // Odd-Even Transposition Sort
-    public static <T extends Comparable> int transpositionSort(ArrayList<T> a, int size) {
+    public static <T extends Comparable> int transpositionSort(ArrayList<T> array, int size) {
        boolean isSorted = false;
+       int swaps = 0;
         while(!isSorted){
             isSorted = true;
-            for (
+            for(int i = 0; i < array.size(); i++) {
+                int adjIndex = i + 1;
+                if (adjIndex == array.size()) {
+                    break;
+                }
+                if (i % 2 == 0) {
+                    if (array.get(adjIndex).compareTo(array.get(i)) > 0) {
+                        swap(array, adjIndex, i);
+                        swaps++;
+                    }
+                }
 
-            )
-        }
+            }
+            for(int i = 0; i < array.size(); i++){
+              int adjIndex = i+1;
+              if(adjIndex == array.size()){
+                  break;
+              }
+                if(i % 2 != 0){
+                    if (array.get(adjIndex).compareTo(array.get(i)) > 0) {
+                        swap(array, adjIndex, i);
+                    }
+
+                    }
+
+                }
+
+
+            }
+        return swaps;
     }
 
     public static void main(String [] args)  throws IOException {
