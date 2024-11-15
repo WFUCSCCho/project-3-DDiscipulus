@@ -1,7 +1,6 @@
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Proj3 {
@@ -188,37 +187,71 @@ public class Proj3 {
             linesRead++;
         }
     }
+    public static void writeToFileAndPrint(String content) throws IOException {
+        // create file variable
+        File myFile = new File("src/Results.csv");
+
+        // ensure it exists or create one
+        if (!myFile.exists()) {
+            try {
+                myFile.createNewFile();
+            } catch (IOException e) {
+
+            }
+        }
+        System.out.println(content);
+
+        FileWriter dataTyper = new FileWriter(myFile, true); // file writer
+        dataTyper.write(content +"\n"); // write given string and new line
+
+        dataTyper.close(); // close file to preserve data
+    }
+
 
     public static void main(String [] args)  throws IOException {
         FastFoodNutritionInfo.readFastFoodData("C:\\Users\\desti\\Documents\\project-1-part-2-DDiscipulus\\src\\Edited(4)FFNData.csv");
-        if(args.length != 3){
+        if (args.length != 3) {
             System.err.println("Argument count is invalid: " + args.length);
             System.out.println("Ensure algorithms are being typed like the following: bubble, merge, transposition, quick");
             System.exit(0);
         }
 
-
+        System.out.println("not stuck");
         // get command line info
         String filePath = args[0];
-        Scanner scanner = new Scanner(new File(filePath));
+        System.out.println("This is the file path: " + filePath);
+
+        FileInputStream inputFileNameStream = new FileInputStream(filePath);
+
+        Scanner scanner = new Scanner(inputFileNameStream);
+
+
+        // ignore first line
+        scanner.nextLine();
         String sorter = args[1].toLowerCase();
         int lines = Integer.valueOf(args[2]);
+        System.out.println("not stuck");
+
 
         // make our lists
-        ArrayList<FastFoodNutritionInfo> sortedList =  new ArrayList<>();
-            listFiller(lines,scanner,sortedList);
-        ArrayList<FastFoodNutritionInfo> reversedList =  new ArrayList<>();
-            listFiller(lines,scanner,reversedList);
-        ArrayList<FastFoodNutritionInfo> shuffledList =  new ArrayList<>();
-            listFiller(lines,scanner,shuffledList);
-
+        ArrayList<FastFoodNutritionInfo> sortedList = new ArrayList<>();
+        listFiller(lines, scanner, sortedList);
+            Collections.sort(sortedList);
+        ArrayList<FastFoodNutritionInfo> reversedList = new ArrayList<>();
+        listFiller(lines, scanner, reversedList);
+            Collections.reverse(reversedList);
+        ArrayList<FastFoodNutritionInfo> shuffledList = new ArrayList<>();
+        listFiller(lines, scanner, shuffledList);
+            Collections.shuffle(shuffledList);
+        System.out.println("stuck");
 
 
         System.out.println(sorter + lines);
         boolean countSwaps = false;
         boolean isBubble = false;
-        switch(sorter) {
+        switch (sorter) {
             case "bubble":
+                System.out.println("I know its bubble");
                 isBubble = true;
                 countSwaps = true;
                 // code block
@@ -237,15 +270,38 @@ public class Proj3 {
                 System.exit(0);
 
         }
-        if(!countSwaps){
+        if (!countSwaps) {
 
-        } else if(countSwaps && isBubble){
+        } else if (countSwaps && isBubble) {
+            System.out.println("I'm trying to sort");
+            // bubble sort times
+            String messagePreTest = sorter + " Trial for " + lines + " lines";
+            writeToFileAndPrint(sorter);
+            writeToFileAndPrint(messagePreTest);
 
-        } else{
+            // sorted
+            long start1 = System.nanoTime(); // start time
+            bubbleSort(sortedList, sortedList.size());
+            long end1 = System.nanoTime(); // end time
+            // reversed
+            long start2 = System.nanoTime(); // start time
+            bubbleSort(reversedList, reversedList.size());
+            long end2 = System.nanoTime(); // end time
+            // shuffled
+            long start3 = System.nanoTime(); // start time
+            bubbleSort(shuffledList, shuffledList.size());
+            long end3 = System.nanoTime(); // end time
 
-        }
+
+            writeToFileAndPrint("bubble sort : " + lines + " lines ");
+            writeToFileAndPrint("\t Sorted Time: " + (end1 - start1) / 1e9 + " sec");
+            writeToFileAndPrint("\t Reverse Time: " + (end2 - start2) / 1e9 + " sec");
+            writeToFileAndPrint("\t Shuffled Time: " + (end3 - start3) / 1e9 + " sec");
+
+
 //For the Bubble Sort, Merge Sort, Quick Sort, and Heap Sort algorithms, you will use System.nanoTime() to calculate the time it takes to run them on already-sorted, shuffled, and reversed lists.
 //
 //For the Bubble Sort and Odd-Even Transposition Sort algorithms, you will count the number of comparisons made during the sorting processes
+        }
     }
 }

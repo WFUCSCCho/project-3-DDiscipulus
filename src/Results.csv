@@ -1,0 +1,50 @@
+Trial 1:
+BST Unsorted: 50 lines 
+	 Insert Time: 0.0131649 sec
+	 Search Time: 8.28E-5 sec
+BST Sorted: 50 lines 
+	 Insert Time: 0.0124008 sec
+	 Search Time: 9.4E-5 sec
+
+AVL Unsorted: 50 lines 
+	 Insert Time: 2.256E-4 sec
+	 Search Time: 7.33E-5 sec
+AVL Sorted: 50 lines 
+	 Insert Time: 2.094E-4 sec
+	 Search Time: 6.71E-5 sec
+
+Trial: 2
+BST Unsorted: 100 lines 
+	 Insert Time: 0.0042562 sec
+	 Search Time: 1.05E-4 sec
+BST Sorted: 100 lines 
+	 Insert Time: 0.0037195 sec
+	 Search Time: 1.082E-4 sec
+
+AVL Unsorted: 100 lines 
+	 Insert Time: 1.976E-4 sec
+	 Search Time: 5.77E-5 sec
+AVL Sorted: 100 lines 
+	 Insert Time: 2.658E-4 sec
+	 Search Time: 4.95E-5 sec
+
+Trial: 3
+BST Unsorted: 301 lines 
+	 Insert Time: 0.0042009 sec
+	 Search Time: 2.061E-4 sec
+BST Sorted: 301 lines 
+	 Insert Time: 0.0039621 sec
+	 Search Time: 3.3E-6 sec
+
+AVL Unsorted: 301 lines 
+	 Insert Time: 2.41E-4 sec
+	 Search Time: 9.23E-5 sec
+AVL Sorted: 301 lines 
+	 Insert Time: 2.227E-4 sec
+	 Search Time: 1.7E-6 sec
+bubble
+bubble Trial for 2 lines
+bubble sort : 2 lines 
+	 Sorted Time: 2.45E-5 sec
+	 Reverse Time: 1.8E-6 sec
+	 Shuffled Time: 3.7E-6 sec
