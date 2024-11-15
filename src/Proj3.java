@@ -1,6 +1,8 @@
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Proj3 {
     // Sorting Method declarations
@@ -163,6 +165,29 @@ public class Proj3 {
             }
         return swaps;
     }
+    public static FastFoodNutritionInfo miniParser(String data){
+        String[] properData = data.split(",");
+
+        // Extract the relevant data from the array
+        String company = properData[0];
+        String item = properData[1];
+        Double calories = Double.parseDouble(properData[2]);
+        Double totalFat = Double.parseDouble(properData[3]);
+        Double carbs = Double.parseDouble(properData[4]);
+        Double protein = Double.parseDouble(properData[5]);
+
+        // Create and return a new FastFoodNutritionInfo object
+        return new FastFoodNutritionInfo(company, item, totalFat, calories, carbs, protein);
+    }
+    public static void listFiller(int numLines, Scanner inputFileNameScanner, ArrayList<FastFoodNutritionInfo> list){
+        int linesRead = 0;
+        while (inputFileNameScanner.hasNextLine() && linesRead < numLines) {
+            String line = inputFileNameScanner.nextLine();
+            FastFoodNutritionInfo info = miniParser(line); // Assuming this method parses a CSV line
+            list.add(info); // Add to unsorted list
+            linesRead++;
+        }
+    }
 
     public static void main(String [] args)  throws IOException {
         FastFoodNutritionInfo.readFastFoodData("C:\\Users\\desti\\Documents\\project-1-part-2-DDiscipulus\\src\\Edited(4)FFNData.csv");
@@ -171,11 +196,56 @@ public class Proj3 {
             System.out.println("Ensure algorithms are being typed like the following: bubble, merge, transposition, quick");
             System.exit(0);
         }
+
+
+        // get command line info
         String filePath = args[0];
-        String sorter = args[1].toLowerCase(); // Normalize case for comparison
+        Scanner scanner = new Scanner(new File(filePath));
+        String sorter = args[1].toLowerCase();
         int lines = Integer.valueOf(args[2]);
 
-        System.out.println(sorter + lines);
+        // make our lists
+        ArrayList<FastFoodNutritionInfo> sortedList =  new ArrayList<>();
+            listFiller(lines,scanner,sortedList);
+        ArrayList<FastFoodNutritionInfo> reversedList =  new ArrayList<>();
+            listFiller(lines,scanner,reversedList);
+        ArrayList<FastFoodNutritionInfo> shuffledList =  new ArrayList<>();
+            listFiller(lines,scanner,shuffledList);
 
+
+
+        System.out.println(sorter + lines);
+        boolean countSwaps = false;
+        boolean isBubble = false;
+        switch(sorter) {
+            case "bubble":
+                isBubble = true;
+                countSwaps = true;
+                // code block
+                break;
+            case "transposition":
+                countSwaps = true;
+
+                // code block
+                break;
+            case "merge":
+                break;
+            case "quick":
+                break;
+            default:
+                System.out.println("Unrecognized sort method, failed");
+                System.exit(0);
+
+        }
+        if(!countSwaps){
+
+        } else if(countSwaps && isBubble){
+
+        } else{
+
+        }
+//For the Bubble Sort, Merge Sort, Quick Sort, and Heap Sort algorithms, you will use System.nanoTime() to calculate the time it takes to run them on already-sorted, shuffled, and reversed lists.
+//
+//For the Bubble Sort and Odd-Even Transposition Sort algorithms, you will count the number of comparisons made during the sorting processes
     }
 }
