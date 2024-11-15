@@ -24,7 +24,7 @@ public class FastFoodNutritionInfo implements Comparable <FastFoodNutritionInfo>
 
 
     // default constructor
-    public FastFoodNutritionInfo(FastFoodNutritionInfo item) {
+    public FastFoodNutritionInfo() {
         this.company = "unknown";
         this.item = "unknown";
         this.calories = 0.0;
@@ -43,12 +43,19 @@ public class FastFoodNutritionInfo implements Comparable <FastFoodNutritionInfo>
         this.carbs = carbs;
         this.protein = protein;
     }
-
+    // Copy Constructor
+    public FastFoodNutritionInfo(FastFoodNutritionInfo other) {
+        this.company = other.company;  // Copy company
+        this.item = other.item;        // Copy item
+        this.calories = other.calories; // Copy calories
+        this.totalFat = other.totalFat; // Copy total fat
+        this.carbs = other.carbs;      // Copy carbs
+        this.protein = other.protein;  // Copy protein
+    }
     // String interface for FFN data
     @Override
     public String toString() {
-        return "Company: " + company + ", Item: " + item + ", Total Calories: " + calories + "\n" +
-                " \t Macro Breakdown: " + "Fat: " + totalFat + " carbs " + carbs + " protein " + protein + "\n";
+        return company + " " + item + " " + calories + " calories";
     }
 
     // Comparable interface for FFN data
