@@ -129,41 +129,45 @@ public class Proj3 {
 
     // Odd-Even Transposition Sort
     public static <T extends Comparable> int transpositionSort(ArrayList<T> array, int size) {
+        System.out.println("starting sort");
        boolean isSorted = false;
+       boolean countedSwapAlready = false;
        int swaps = 0;
-        while(!isSorted){
+        while (!isSorted) {
             isSorted = true;
-            for(int i = 0; i < array.size(); i++) {
+            countedSwapAlready = false;
+
+            // Pass 1: Compare and swap elements at even indices
+            for (int i = 0; i < array.size() - 1; i += 2) {
                 int adjIndex = i + 1;
-                if (adjIndex == array.size()) {
-                    break;
+                System.out.println("Comparing indices " + i + " and " + (i + 1));
+                if (array.get(i).compareTo(array.get(adjIndex)) > 0) {
+                    System.out.println("Swapping " + array.get(i) + " and " + array.get(i + 1));
+                    swap(array, i, adjIndex);
+                    swaps++;
+                    isSorted = false;
+                    countedSwapAlready = true;
                 }
-                if (i % 2 == 0) {
-                    if (array.get(adjIndex).compareTo(array.get(i)) > 0) {
-                        swap(array, adjIndex, i);
+            }
+
+            // Pass 2: Compare and swap elements at odd indices
+            for (int i = 1; i < array.size() - 1; i += 2) {
+                System.out.println("Comparing indices " + i + " and " + (i + 1));
+                int adjIndex = i + 1;
+                if (array.get(i).compareTo(array.get(adjIndex)) > 0) {
+                    System.out.println("Swapping " + array.get(i) + " and " + array.get(adjIndex));
+                    swap(array, i, i + 1);
+                    isSorted = false;
+                    if(!countedSwapAlready){
                         swaps++;
                     }
                 }
-
             }
-            for(int i = 0; i < array.size(); i++){
-              int adjIndex = i+1;
-              if(adjIndex == array.size()){
-                  break;
-              }
-                if(i % 2 != 0){
-                    if (array.get(adjIndex).compareTo(array.get(i)) > 0) {
-                        swap(array, adjIndex, i);
-                    }
+        }
 
-                    }
-
-                }
-
-
-            }
         return swaps;
     }
+
     public static FastFoodNutritionInfo miniParser(String data){
         String[] properData = data.split(",");
 
@@ -333,6 +337,28 @@ public class Proj3 {
 //For the Bubble Sort, Merge Sort, Quick Sort, and Heap Sort algorithms, you will use System.nanoTime() to calculate the time it takes to run them on already-sorted, shuffled, and reversed lists.
 //
 //For the Bubble Sort and Odd-Even Transposition Sort algorithms, you will count the number of comparisons made during the sorting processes
+        } else{
+            int bubbleSwaps1;
+            int bubbleSwaps2;
+            int bubbleSwaps3;
+            // bubble sort times
+            String messagePreTest = sorter + " Trial for " + lines + " lines";
+            writeToFileAndPrint(messagePreTest);
+
+            // sorted
+            bubbleSwaps1 = transpositionSort(sortedList, sortedList.size());
+
+            // reversed
+            bubbleSwaps2 = transpositionSort(reversedList, reversedList.size());
+            // shuffled
+            bubbleSwaps3 = transpositionSort(shuffledList, shuffledList.size());
+
+            writeToFileAndPrint("\t Sorted list "+ bubbleSwaps1+  " swaps ");
+            writeToFileAndPrint( sortedList);
+            writeToFileAndPrint("\t Reversed list "+ bubbleSwaps2+  " swaps ");
+            writeToFileAndPrint(reversedList);
+            writeToFileAndPrint("\t Shuffled List "+ bubbleSwaps3 + " swaps");
+            writeToFileAndPrint(shuffledList);
         }
     }
 }

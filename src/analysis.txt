@@ -84,3 +84,67 @@ bubble Trial for 100 lines
 	0 swaps Sorted Time: 0.0043468 sec
 	4884 swaps Reverse Time: 0.0073097 sec
 	2079 swaps Shuffled Time: 0.0049506 sec
+transposition Trial for 100 lines
+	32 swaps 
+	0 swaps 
+	19
+transposition Trial for 100 lines
+	32 swaps 
+	0 swaps 
+	20 swaps
+transposition Trial for 200 lines
+	47 swaps 
+	0 swaps 
+	44 swaps
+transposition Trial for 200 lines
+	9848 swaps 
+	0 swaps 
+	4680 swaps
+transposition Trial for 200 lines
+	9848 swaps 
+	0 swaps 
+	4936 swaps
+transposition Trial for 5 lines
+	6 swaps 
+	0 swaps 
+	1 swaps
+transposition Trial for 5 lines
+	6 swaps 
+	0 swaps 
+	1 swaps
+transposition Trial for 5 lines
+	0 swaps 
+	6 swaps 
+	0 swaps
+transposition Trial for 5 lines
+	6 swaps 
+	0 swaps 
+	2 swaps
+transposition Trial for 5 lines
+	0 swaps 
+	6 swaps 
+	1 swaps
+transposition Trial for 5 lines
+	6 swaps 
+	0 swaps 
+	3 swaps
+transposition Trial for 5 lines
+	6 swaps 
+	0 swaps 
+	5 swaps
+transposition Trial for 5 lines
+	 Sorted list0 swaps 
+	 Reversed list10 swaps 
+	 Shuffled List5 swaps
+transposition Trial for 5 lines
+	 Sorted list0 swaps 
+	 Reversed list10 swaps 
+	 Shuffled List7 swaps
+transposition Trial for 5 lines
+	 Sorted list0 swaps 
+	 Reversed list6 swaps 
+	 Shuffled List2 swaps
+transposition Trial for 5 lines
+	 Sorted list 0 swaps 
+	 Reversed list 6 swaps 
+	 Shuffled List 4 swaps
