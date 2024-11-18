@@ -129,7 +129,6 @@ public class Proj3 {
 
     // Odd-Even Transposition Sort
     public static <T extends Comparable> int transpositionSort(ArrayList<T> array, int size) {
-        System.out.println("starting sort");
        boolean isSorted = false;
        boolean countedSwapAlready = false;
        int swaps = 0;
@@ -140,9 +139,7 @@ public class Proj3 {
             // Pass 1: Compare and swap elements at even indices
             for (int i = 0; i < array.size() - 1; i += 2) {
                 int adjIndex = i + 1;
-                System.out.println("Comparing indices " + i + " and " + (i + 1));
                 if (array.get(i).compareTo(array.get(adjIndex)) > 0) {
-                    System.out.println("Swapping " + array.get(i) + " and " + array.get(i + 1));
                     swap(array, i, adjIndex);
                     swaps++;
                     isSorted = false;
@@ -152,10 +149,8 @@ public class Proj3 {
 
             // Pass 2: Compare and swap elements at odd indices
             for (int i = 1; i < array.size() - 1; i += 2) {
-                System.out.println("Comparing indices " + i + " and " + (i + 1));
                 int adjIndex = i + 1;
                 if (array.get(i).compareTo(array.get(adjIndex)) > 0) {
-                    System.out.println("Swapping " + array.get(i) + " and " + array.get(adjIndex));
                     swap(array, i, i + 1);
                     isSorted = false;
                     if(!countedSwapAlready){
@@ -166,6 +161,12 @@ public class Proj3 {
         }
 
         return swaps;
+    }
+    public static void refillTempArray(ArrayList<FastFoodNutritionInfo> tempArray,ArrayList<FastFoodNutritionInfo> listToBeSorted){
+        for(int i = 0; i < listToBeSorted.size(); i++){
+            tempArray.add(new FastFoodNutritionInfo());
+        }
+
     }
 
     public static FastFoodNutritionInfo miniParser(String data){
@@ -238,6 +239,7 @@ public class Proj3 {
 
         dataTyper.close(); // close file to preserve data
     }
+
     static String analysisFilePath = "src/analysis.txt";
    static String sortedFilePath = "src/sorted.txt";
 
@@ -290,19 +292,107 @@ public class Proj3 {
                 break;
             case "transposition":
                 countSwaps = true;
-
-                // code block
-                break;
-            case "merge":
-                break;
-            case "quick":
-                break;
-            default:
-                System.out.println("Unrecognized sort method, failed");
-                System.exit(0);
-
         }
         if (!countSwaps) {
+            switch(sorter) {
+                case "merge":
+                    String messagePreTest = sorter + " Trial for " + lines + " lines";
+                    writeToFileAndPrint(messagePreTest);
+
+                    // sorted
+                    ArrayList<FastFoodNutritionInfo> tempArray = new ArrayList<>(sortedList.size());
+                    refillTempArray(tempArray,sortedList);
+                    long start1 = System.nanoTime(); // start time
+                    mergeSort(sortedList,tempArray,0, sortedList.size()-1);
+                    long end1 = System.nanoTime(); // end time
+
+                    tempArray.clear();
+                    refillTempArray(tempArray,sortedList);
+
+                    // reversed
+                    long start2 = System.nanoTime(); // start time
+                    mergeSort(reversedList,tempArray,0, reversedList.size()-1);
+                    long end2 = System.nanoTime(); // end time
+
+                    tempArray.clear();
+                    refillTempArray(tempArray,sortedList);
+
+                    // shuffled
+                    long start3 = System.nanoTime(); // start time
+                    mergeSort(shuffledList,tempArray,0, shuffledList.size()-1);
+                    long end3 = System.nanoTime(); // end time
+
+
+                    writeToFileAndPrint("\t Sorted Time: " + (end1 - start1) / 1e9 + " sec");
+                    writeToFileAndPrint( sortedList);
+                    writeToFileAndPrint("\t Reverse Time: " + (end2 - start2) / 1e9 + " sec");
+                    writeToFileAndPrint(reversedList);
+                    writeToFileAndPrint("\t Shuffled Time: " + (end3 - start3) / 1e9 + " sec");
+                    writeToFileAndPrint(shuffledList);
+                    break;
+                case "heap" :
+                    messagePreTest = sorter + " Trial for " + lines + " lines";
+                    writeToFileAndPrint(messagePreTest);
+                    int rightIndex = sortedList.size()-1;
+
+                    // sorted
+                    start1 = System.nanoTime(); // start time
+                    heapSort(sortedList,0,rightIndex);
+                    end1 = System.nanoTime(); // end time
+
+
+                    // reversed
+                    start2 = System.nanoTime(); // start time
+                    heapSort(reversedList,0,rightIndex);;
+                    end2 = System.nanoTime(); // end time
+
+                    // shuffled
+                    start3 = System.nanoTime(); // start time
+                    heapSort(shuffledList,0,rightIndex);
+                    end3 = System.nanoTime(); // end time
+
+
+                    writeToFileAndPrint("\t Sorted Time: " + (end1 - start1) / 1e9 + " sec");
+                    writeToFileAndPrint( sortedList);
+                    writeToFileAndPrint("\t Reverse Time: " + (end2 - start2) / 1e9 + " sec");
+                    writeToFileAndPrint(reversedList);
+                    writeToFileAndPrint("\t Shuffled Time: " + (end3 - start3) / 1e9 + " sec");
+                    writeToFileAndPrint(shuffledList);
+
+                    break;
+                case "quick":
+                    messagePreTest = sorter + " Trial for " + lines + " lines";
+                    writeToFileAndPrint(messagePreTest);
+                    rightIndex = sortedList.size()-1;
+
+                    // sorted
+                    start1 = System.nanoTime(); // start time
+                    quickSort(sortedList,0,rightIndex);
+                    end1 = System.nanoTime(); // end time
+
+
+                    // reversed
+                    start2 = System.nanoTime(); // start time
+                    quickSort(reversedList,0,rightIndex);;
+                    end2 = System.nanoTime(); // end time
+
+                    // shuffled
+                    start3 = System.nanoTime(); // start time
+                    quickSort(shuffledList,0,rightIndex);
+                    end3 = System.nanoTime(); // end time
+
+
+                    writeToFileAndPrint("\t Sorted Time: " + (end1 - start1) / 1e9 + " sec");
+                    writeToFileAndPrint( sortedList);
+                    writeToFileAndPrint("\t Reverse Time: " + (end2 - start2) / 1e9 + " sec");
+                    writeToFileAndPrint(reversedList);
+                    writeToFileAndPrint("\t Shuffled Time: " + (end3 - start3) / 1e9 + " sec");
+                    writeToFileAndPrint(shuffledList);
+
+                default:
+                    System.out.println("Unrecognized sort method, failed");
+                    System.exit(0);
+            }
 
         } else if (countSwaps && isBubble) {
             int bubbleSwaps1;
