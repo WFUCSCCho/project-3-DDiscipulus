@@ -245,7 +245,7 @@ public class Proj3 {
 
 
     public static void main(String [] args)  throws IOException {
-
+System.out.println("Recognized Sorting algoritgims: bubble, transposition, heap, merge, quick");
 
         new PrintWriter(sortedFilePath).close();
 

@@ -1,0 +1,65 @@
+bubble Trial for 20 lines
+	0 swaps Sorted Time: 2.544E-4 sec
+	184 swaps Reverse Time: 3.005E-4 sec
+	75 swaps Shuffled Time: 2.186E-4 sec
+transposition Trial for 20 lines
+	 Sorted list 0 swaps 
+	 Reversed list 95 swaps 
+	 Shuffled List 60 swaps
+merge Trial for 20 lines
+	 Sorted Time: 2.215E-4 sec
+	 Reverse Time: 1.754E-4 sec
+	 Shuffled Time: 1.871E-4 sec
+quick Trial for 20 lines
+	 Sorted Time: 1.352E-4 sec
+	 Reverse Time: 9.31E-5 sec
+	 Shuffled Time: 8.57E-5 sec
+heap Trial for 20 lines
+	 Sorted Time: 3.814E-4 sec
+	 Reverse Time: 2.205E-4 sec
+	 Shuffled Time: 2.371E-4 sec
+
+bubble Trial for 100 lines
+	0 swaps Sorted Time: 0.0039587 sec
+	4884 swaps Reverse Time: 0.0071962 sec
+	2430 swaps Shuffled Time: 0.0057205 sec
+bubble Trial for 500 lines
+	0 swaps Sorted Time: 0.0656861 sec
+	123053 swaps Reverse Time: 0.0489968 sec
+	58569 swaps Shuffled Time: 0.0024253 sec
+
+transposition Trial for 100 lines
+	 Sorted list 0 swaps 
+	 Reversed list 2463 swaps 
+	 Shuffled List 1227 swaps
+transposition Trial for 500 lines
+	 Sorted list 0 swaps 
+	 Reversed list 61556 swaps 
+	 Shuffled List 30239 swaps
+	 
+merge Trial for 100 lines
+	 Sorted Time: 0.0011235 sec
+	 Reverse Time: 9.249E-4 sec
+	 Shuffled Time: 9.599E-4 sec
+merge Trial for 500 lines
+	 Sorted Time: 0.0038883 sec
+	 Reverse Time: 0.0037111 sec
+	 Shuffled Time: 0.0035688 sec
+	 
+quick Trial for 100 lines
+	 Sorted Time: 5.943E-4 sec
+	 Reverse Time: 4.838E-4 sec
+	 Shuffled Time: 5.511E-4 sec
+quick Trial for 500 lines
+	 Sorted Time: 0.0031643 sec
+	 Reverse Time: 0.0026228 sec
+	 Shuffled Time: 0.0026573 sec
+	 
+heap Trial for 100 lines
+	 Sorted Time: 0.002463 sec
+	 Reverse Time: 0.0016994 sec
+	 Shuffled Time: 0.0015679 sec
+heap Trial for 500 lines
+	 Sorted Time: 0.0082726 sec
+	 Reverse Time: 0.0065736 sec
+	 Shuffled Time: 0.0067489 sec
