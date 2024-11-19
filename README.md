@@ -96,17 +96,31 @@ vs. N for each case. Take a screenshot of your graph and put them here by modify
 it to this repository.
 
 Bubble Sort, Merge Sort, Quick Sort, and Heap Sort running time (already sorted):
-![image](https://github.com/user-attachments/assets/76f103c8-8c02-4bec-9966-99568f2effb6)
+![Sorted List Times - Google Sheets - Google Chrome 11_18_2024 8_08_45 PM](https://github.com/user-attachments/assets/f5b884d8-36d1-43e8-a75f-7fd9e5ae2836)
+
+
 
 Bubble Sort, Merge Sort, Quick Sort, and Heap Sort running time (shuffled):
+![Shuffled Times - Google Sheets - Google Chrome 11_18_2024 8_09_25 PM](https://github.com/user-attachments/assets/6d27a40c-a1ef-419f-830a-aff5b92bc1a8)
+
 
 Bubble Sort, Merge Sort, Quick Sort, and Heap Sort running time (reversed):
+![Reverse](https://github.com/user-attachments/assets/08c303a9-6ce1-498e-827b-473e2e34127c)
+
 
 Bubble Sort and Odd-Even Transposition Sort comparison (already sorted):
+![S Swaps](https://github.com/user-attachments/assets/ab42ebe5-346a-473c-99e7-5d4249297bc1)
+
 
 Bubble Sort and Odd-Even Transposition Sort comparison (shuffled):
+![Shuffle Swaps - Google Sheets - Google Chrome 11_18_2024 8_10_11 PM](https://github.com/user-attachments/assets/1d4fa747-26fd-4ed7-98bb-993d6f5ec701)
+
+
 
 Bubble Sort and Odd-Even Transposition Sort comparison (reversed):
+![Reversed Swaps - Google Sheets - Google Chrome 11_18_2024 8_10_03 PM](https://github.com/user-attachments/assets/6378055d-293c-4845-8d62-fff496067d3e)
+
+
 
 ## Submission:
 
