@@ -86,3 +86,11 @@ heap Trial for 300 lines
 	 Sorted Time: 0.0041026 sec
 	 Reverse Time: 0.0024163 sec
 	 Shuffled Time: 0.0026143 sec
+heap Trial for 300 lines
+	 Sorted Time: 0.0059856 sec
+	 Reverse Time: 0.0053837 sec
+	 Shuffled Time: 0.004896 sec
+merge Trial for 247 lines
+	 Sorted Time: 0.0025674 sec
+	 Reverse Time: 0.0018369 sec
+	 Shuffled Time: 0.0019626 sec

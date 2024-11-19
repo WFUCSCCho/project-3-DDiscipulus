@@ -1,3 +1,9 @@
+/**
+ * @ Proj3.Java
+ * @ This program tests the time used by various sorting algorithms on the Fast Food Nutrition dataset.
+ * @ author: Destiny
+ * @ date: Nov 4, 2024
+ */
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -5,7 +11,8 @@ import java.util.Scanner;
 
 public class Proj3 {
     // Sorting Method declarations
-    // Merge Sort
+
+       // Implementation of Merge Sort
     public static <T extends Comparable> void mergeSort(ArrayList<T> a,  ArrayList<T> temp, int left, int right) {
         if (left == right) {
             return;
@@ -19,7 +26,7 @@ public class Proj3 {
         // Do the merge operation back to A
         merge(a,temp,left,mid,right);
     }
-
+// Handles the merging element of Merge sort
     public static <T extends Comparable> void merge(ArrayList<T> a,ArrayList<T> temp, int left, int mid, int right) {
         int i1 = left;
         int i2 = mid + 1;
@@ -38,9 +45,11 @@ public class Proj3 {
 
 
     // Quick Sort
+        // method finds a pivot by selecting the middle element
     static <T extends Comparable<? super T>>int findPivot( ArrayList<T> a, int i, int j)
     { return (i+j)/2; }
 
+    // Implementation of quick sort
     public static <T extends Comparable> void quickSort(ArrayList<T> a, int left, int right) {
             int pivotIndex = findPivot(a, left, right);  // Pick a pivot
             swap(a, pivotIndex, right);               // Stick pivot at end
@@ -51,6 +60,7 @@ public class Proj3 {
             if ((right-k) > 1) { quickSort(a, k+1, right); }  // Sort right partition
     }
 
+    // splits the array in middle
     static <T extends Comparable<? super T>> int partition(ArrayList<T> array, int left, int right, T pivot) {
         // finished
         while (left <= right) { // Move bounds inward until they meet
@@ -64,6 +74,7 @@ public class Proj3 {
         return left;            // Return first position in right partition
     }
 
+    // swaps 2 elements in an array
     static <T> void swap(ArrayList<T> a, int i, int j) {
         T temp = a.get(i);
         a.set(i, a.get(j));
@@ -71,8 +82,10 @@ public class Proj3 {
     }
 
     // Heap Sort
+        // finds left child in heap
     public static <T extends Comparable> int leftChild(int pos, ArrayList<T> a)
     { return 2 * pos + 1; }
+        // build a heap of an array
     private static <T extends Comparable> void buildHeap(ArrayList<T> a, int left, int right) {
         int n = a.size();
         // Start heapifying from the last non-leaf node
@@ -80,6 +93,7 @@ public class Proj3 {
             heapify(a, i, right);  // Build the heap by heapifying non-leaf nodes
         }
     }
+        // Implementation of heapsort
     public static <T extends Comparable> void heapSort(ArrayList<T> a, int left, int right) {
         buildHeap(a, left, right);
 
@@ -90,22 +104,25 @@ public class Proj3 {
             heapify(a, left, i - 1);
         }
     }
-
+// percolates down to ensure that array maintains properties of a heap
     public static <T extends Comparable> void heapify (ArrayList<T> a, int left, int right) {
        int leftC = leftChild(left,a);
        int rightC = leftC +1;
         int n = a.size();
         int maxIndex = left;
 
+        // iterate through left and right subtrees to ensure parent isn't smaller than child
         if (leftC <= right && a.get(leftC).compareTo(a.get(maxIndex)) > 0) {
             maxIndex = leftC;
         }
         if (rightC <= right && a.get(rightC).compareTo(a.get(maxIndex)) > 0) {
             maxIndex = rightC;
         }
+
         if(right < n && a.get(right).compareTo(a.get(maxIndex))>0){
             maxIndex = right;
         }
+        // swap if appropiate
         if(maxIndex != left){
             swap(a,left,maxIndex);
             heapify(a,maxIndex,right);
@@ -113,7 +130,7 @@ public class Proj3 {
         }
 
 
-    // Bubble Sort
+    // Bubble Sort implementation
     public static <T extends Comparable> int bubbleSort(ArrayList<T> array, int size) {
         int swaps = 0;
         for (int i = 0; i < array.size() - 1; i++) { // Insert i'th record
@@ -127,16 +144,16 @@ public class Proj3 {
         return swaps;
     }
 
-    // Odd-Even Transposition Sort
+    // Odd-Even Transposition Sort implementation
     public static <T extends Comparable> int transpositionSort(ArrayList<T> array, int size) {
-       boolean isSorted = false;
-       boolean countedSwapAlready = false;
+       boolean isSorted = false; // check if sorted
+       boolean countedSwapAlready = false; // since it's parallel* make sure to count swaps only once
        int swaps = 0;
         while (!isSorted) {
             isSorted = true;
             countedSwapAlready = false;
 
-            // Pass 1: Compare and swap elements at even indices
+            // Do bubble sort on even indices
             for (int i = 0; i < array.size() - 1; i += 2) {
                 int adjIndex = i + 1;
                 if (array.get(i).compareTo(array.get(adjIndex)) > 0) {
@@ -147,7 +164,7 @@ public class Proj3 {
                 }
             }
 
-            // Pass 2: Compare and swap elements at odd indices
+            // Do bubble sort at odd indices
             for (int i = 1; i < array.size() - 1; i += 2) {
                 int adjIndex = i + 1;
                 if (array.get(i).compareTo(array.get(adjIndex)) > 0) {
@@ -162,6 +179,7 @@ public class Proj3 {
 
         return swaps;
     }
+    // fill an array with default Fast food nutrition
     public static void refillTempArray(ArrayList<FastFoodNutritionInfo> tempArray,ArrayList<FastFoodNutritionInfo> listToBeSorted){
         for(int i = 0; i < listToBeSorted.size(); i++){
             tempArray.add(new FastFoodNutritionInfo());
@@ -169,6 +187,7 @@ public class Proj3 {
 
     }
 
+// Parse FFN data into an object
     public static FastFoodNutritionInfo miniParser(String data){
         String[] properData = data.split(",");
 
@@ -191,6 +210,7 @@ public class Proj3 {
             newList.add(new FastFoodNutritionInfo(item));
         }
     }
+    // fill a given list, with a specified amount of lines
     public static void listFiller(int numLines, Scanner inputFileNameScanner, ArrayList<FastFoodNutritionInfo> list){
         int linesRead = 0;
         while (inputFileNameScanner.hasNextLine() && linesRead < numLines) {
@@ -200,6 +220,7 @@ public class Proj3 {
             linesRead++;
         }
     }
+    // Take's a string and write is to a file and prints to a console
     public static void writeToFileAndPrint(String content) throws IOException {
         // create file variable
         File myFile = new File(analysisFilePath);
@@ -219,6 +240,7 @@ public class Proj3 {
 
         dataTyper.close(); // close file to preserve data
     }
+    // Overloaded method that writes a list to the sorted file without printing
     public static void writeToFileAndPrint(ArrayList<FastFoodNutritionInfo> list) throws IOException {
         // create file variable
         File myFile = new File(sortedFilePath);
@@ -240,12 +262,12 @@ public class Proj3 {
         dataTyper.close(); // close file to preserve data
     }
 
-    static String analysisFilePath = "src/analysis.txt";
-   static String sortedFilePath = "src/sorted.txt";
+    static String analysisFilePath = "src/analysis.txt"; // holds analysis file path
+   static String sortedFilePath = "src/sorted.txt"; // holds sorted file path
 
 
     public static void main(String [] args)  throws IOException {
-System.out.println("Recognized Sorting algoritgims: bubble, transposition, heap, merge, quick");
+System.out.println("Recognized Sorting algorithms: bubble, transposition, heap, merge, quick");
 
         new PrintWriter(sortedFilePath).close();
 
@@ -281,14 +303,15 @@ System.out.println("Recognized Sorting algoritgims: bubble, transposition, heap,
         copyFFNList(shuffledList,sortedList);
             Collections.shuffle(shuffledList);
 
+        boolean countSwaps = false; // tracks if we are concerned with swaps
+        boolean isBubble = false; // tracks if its bubble sort
 
-        boolean countSwaps = false;
-        boolean isBubble = false;
+        // determines which sort it is
+        // & sets bubble & transposition specific variables to true
         switch (sorter) {
             case "bubble":
                 isBubble = true;
                 countSwaps = true;
-                // code block
                 break;
             case "transposition":
                 countSwaps = true;
@@ -300,8 +323,8 @@ System.out.println("Recognized Sorting algoritgims: bubble, transposition, heap,
                     writeToFileAndPrint(messagePreTest);
 
                     // sorted
-                    ArrayList<FastFoodNutritionInfo> tempArray = new ArrayList<>(sortedList.size());
-                    refillTempArray(tempArray,sortedList);
+                    ArrayList<FastFoodNutritionInfo> tempArray = new ArrayList<>(sortedList.size()); // temp array for merge
+                    refillTempArray(tempArray,sortedList); // fill it with default FFN objects
                     long start1 = System.nanoTime(); // start time
                     mergeSort(sortedList,tempArray,0, sortedList.size()-1);
                     long end1 = System.nanoTime(); // end time
@@ -424,10 +447,8 @@ System.out.println("Recognized Sorting algoritgims: bubble, transposition, heap,
                 writeToFileAndPrint(shuffledList);
 
 
-//For the Bubble Sort, Merge Sort, Quick Sort, and Heap Sort algorithms, you will use System.nanoTime() to calculate the time it takes to run them on already-sorted, shuffled, and reversed lists.
-//
-//For the Bubble Sort and Odd-Even Transposition Sort algorithms, you will count the number of comparisons made during the sorting processes
         } else{
+            // transposition
             int bubbleSwaps1;
             int bubbleSwaps2;
             int bubbleSwaps3;
