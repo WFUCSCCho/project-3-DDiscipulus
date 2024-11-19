@@ -66,3 +66,23 @@ heap Trial for 500 lines
 	 Sorted Time: 0.0082726 sec
 	 Reverse Time: 0.0065736 sec
 	 Shuffled Time: 0.0067489 sec
+bubble Trial for 300 lines
+	0 swaps Sorted Time: 0.0167482 sec
+	44291 swaps Reverse Time: 0.0316256 sec
+	20497 swaps Shuffled Time: 0.0087572 sec
+transposition Trial for 300 lines
+	 Sorted list 0 swaps 
+	 Reversed list 22170 swaps 
+	 Shuffled List 11397 swaps
+quick Trial for 300 lines
+	 Sorted Time: 0.0015517 sec
+	 Reverse Time: 0.0011726 sec
+	 Shuffled Time: 9.152E-4 sec
+merge Trial for 300 lines
+	 Sorted Time: 0.002249 sec
+	 Reverse Time: 0.0018125 sec
+	 Shuffled Time: 0.001601 sec
+heap Trial for 300 lines
+	 Sorted Time: 0.0041026 sec
+	 Reverse Time: 0.0024163 sec
+	 Shuffled Time: 0.0026143 sec
