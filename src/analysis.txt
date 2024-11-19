@@ -1,3 +1,6 @@
+// first series of tests were 20 100 500
+// now decided 500 is way too big and ruining the scaling of all my graphs
+
 bubble Trial for 20 lines
 	0 swaps Sorted Time: 2.544E-4 sec
 	184 swaps Reverse Time: 3.005E-4 sec
