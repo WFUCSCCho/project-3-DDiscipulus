@@ -113,11 +113,13 @@ Bubble Sort and Odd-Even Transposition Sort comparison (already sorted):
 
 
 Bubble Sort and Odd-Even Transposition Sort comparison (shuffled):
-![Shuffle Swaps - Google Sheets - Google Chrome 11_18_2024 8_10_11 PM](https://github.com/user-attachments/assets/1dbc70b0-567c-40ad-b492-eef8e62148a0)
+![Shuffle Swaps - Google Sheets - Google Chrome 11_18_2024 8_10_11 PM](https://github.com/user-attachments/assets/1d4fa747-26fd-4ed7-98bb-993d6f5ec701)
+
 
 
 Bubble Sort and Odd-Even Transposition Sort comparison (reversed):
-![Reversed Swaps - Google Sheets - Google Chrome 11_18_2024 8_10_03 PM](https://github.com/user-attachments/assets/2696aba9-2b4e-4510-bb20-0f146b0c691b)
+![Reversed Swaps - Google Sheets - Google Chrome 11_18_2024 8_10_03 PM](https://github.com/user-attachments/assets/6378055d-293c-4845-8d62-fff496067d3e)
+
 
 
 ## Submission:
